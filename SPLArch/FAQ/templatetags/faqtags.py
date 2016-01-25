@@ -31,7 +31,7 @@ class FaqListNode(template.Node):
 @register.tag
 def faqs_for_topic(parser, token):
     """
-    Returns a list of 'count' faq's that belong to the given topic
+    Returns a list of 'count' FAQ's that belong to the given topic
     the supplied topic argument must be in the slug format 'topic-name'
     
     Example usage::
@@ -51,8 +51,8 @@ def faqs_for_topic(parser, token):
 @register.tag
 def faq_list(parser, token):
     """
-    returns a generic list of 'count' faq's to display in a list 
-    ordered by the faq sort order.
+    returns a generic list of 'count' FAQ's to display in a list
+    ordered by the FAQ sort order.
 
     Example usage::
     

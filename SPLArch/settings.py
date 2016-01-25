@@ -130,7 +130,7 @@ INSTALLED_APPS = (
     'SPLArch.architecture',
     'SPLArch.requirement',
     'SPLArch.scoping',
-    'SPLArch.faq',
+    'SPLArch.FAQ',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 

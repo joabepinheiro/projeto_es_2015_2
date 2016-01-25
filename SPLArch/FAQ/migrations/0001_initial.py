@@ -15,14 +15,14 @@ class Migration(SchemaMigration):
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=150)),
             ('sort_order', self.gf('django.db.models.fields.IntegerField')(default=0)),
         ))
-        db.send_create_signal(u'faq', ['Topic'])
+        db.send_create_signal(u'FAQ', ['Topic'])
 
         # Adding model 'Question'
         db.create_table(u'faq_question', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('text', self.gf('django.db.models.fields.TextField')()),
             ('answer', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('topic', self.gf('django.db.models.fields.related.ForeignKey')(related_name='questions', to=orm['faq.Topic'])),
+            ('topic', self.gf('django.db.models.fields.related.ForeignKey')(related_name='questions', to=orm['FAQ.Topic'])),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=100)),
             ('status', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('protected', self.gf('django.db.models.fields.BooleanField')(default=False)),
@@ -32,7 +32,7 @@ class Migration(SchemaMigration):
             ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name='+', null=True, to=orm['auth.User'])),
             ('updated_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name='+', null=True, to=orm['auth.User'])),
         ))
-        db.send_create_signal(u'faq', ['Question'])
+        db.send_create_signal(u'FAQ', ['Question'])
 
 
     def backwards(self, orm):
@@ -80,7 +80,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'faq.question': {
+        u'FAQ.question': {
             'Meta': {'ordering': "['sort_order', 'created_on']", 'object_name': 'Question'},
             'answer': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'created_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'+'", 'null': 'True', 'to': u"orm['auth.User']"}),
@@ -91,11 +91,11 @@ class Migration(SchemaMigration):
             'sort_order': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'status': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'text': ('django.db.models.fields.TextField', [], {}),
-            'topic': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'questions'", 'to': u"orm['faq.Topic']"}),
+            'topic': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'questions'", 'to': u"orm['FAQ.Topic']"}),
             'updated_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'+'", 'null': 'True', 'to': u"orm['auth.User']"}),
             'updated_on': ('django.db.models.fields.DateTimeField', [], {})
         },
-        u'faq.topic': {
+        u'FAQ.topic': {
             'Meta': {'ordering': "['sort_order', 'name']", 'object_name': 'Topic'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
@@ -104,4 +104,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['faq']
+    complete_apps = ['FAQ']

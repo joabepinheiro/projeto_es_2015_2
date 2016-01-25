@@ -171,8 +171,8 @@ class ScenariosAdmin(admin.ModelAdmin):
 
 class DSSAAdmin(admin.ModelAdmin):
     form = DSSAForm
-    fields = ["name", "description", "references", "technology", "scenarios", ]
-    filter_horizontal = ("references", "technology", "scenarios",)
+    fields = ["name", "introduction", "references", "technology", "Quality_Attribute_Priorities", ]
+    filter_horizontal = ("references", "technology", "Quality_Attribute_Priorities",)
 
 
 class AddScenariosAdmin(admin.ModelAdmin):
@@ -190,4 +190,4 @@ admin.site.register(DDSA, DSSAAdmin)
 admin.site.register(AddScenarios, AddScenariosAdmin)
 admin.site.register(Scenarios, ScenariosAdmin)
 admin.site.unregister(Architecture)
-admin.site.register(TemplateScenarios)
+admin.site.register(Quality_Scenario_Document)

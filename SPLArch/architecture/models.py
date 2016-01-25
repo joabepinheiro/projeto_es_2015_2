@@ -13,6 +13,8 @@ class References(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    publisher = models.CharField(max_length=100)
+    pages = models.CharField(max_length=7)
 
     def __unicode__(self):
         return self.title
@@ -30,13 +32,17 @@ class References(models.Model):
 
         return render_to_latex("admin/fur/references/report_references.tex",mycontext)
 
+    class Meta:
+        verbose_name="References"
+        verbose_name_plural="References"
+
 
 class DDSA(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    introduction = models.TextField(blank=True)
     references = models.ManyToManyField('References')
     technology = models.ManyToManyField('Technology')
-    scenarios = models.ManyToManyField('AddScenarios')
+    Quality_Attribute_Priorities = models.ManyToManyField('AddScenarios')
 
     def __unicode__(self):
         return self.name
@@ -45,17 +51,17 @@ class DDSA(models.Model):
         verbose_name="DSSA"
         verbose_name_plural="DSSAs"
 
-class TemplateScenarios(models.Model):
-    introduction = models.CharField(max_length=100)
+class Quality_Scenario_Document(models.Model):
+    introduction = models.TextField(blank=True)
     references = models.ManyToManyField('References')
-    scenarios = models.ManyToManyField('AddScenarios')
+    quality_scenarios = models.ManyToManyField('AddScenarios')
 
     def __unicode__(self):
         return self.introduction
 
     class Meta:
-        verbose_name="Template Quality Scenario"
-        verbose_name_plural="Template Quality Scenarios"
+        verbose_name="Quality Scenario Document"
+        verbose_name_plural="Quality Scenario Documents"
 
 class Scenarios(models.Model):
     name = models.CharField(max_length=100)
@@ -97,7 +103,7 @@ class Technology(models.Model):
 class API(models.Model):
     name = models.CharField(max_length=100)
     version = models.CharField(max_length=100)
-    specification = models.CharField(max_length=100)
+    specification = models.TextField(blank=True)
 
     def __unicode__(self):
         return self.name

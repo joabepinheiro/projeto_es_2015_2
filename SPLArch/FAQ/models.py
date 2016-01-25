@@ -17,7 +17,7 @@ class Topic(models.Model):
         help_text=_('The order you would like the topic to be displayed.'))
 
     def get_absolute_url(self):
-        return '/faq/' + self.slug
+        return '/FAQ/' + self.slug
 
     class Meta:
         verbose_name = _("Topic")

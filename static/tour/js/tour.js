@@ -38,7 +38,7 @@
          {
              title: "FAQ",
              content: "Realize pesquisas pelo sistema",
-             target: "faq",
+             target: "FAQ",
              placement: "right",
              xOffset: -500,
              yOffset: 30,
