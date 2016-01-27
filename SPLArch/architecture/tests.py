@@ -111,9 +111,9 @@ class ScenariosTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class AddScenariosTestCase(TestCase):
+class QualityScenariosTestCase(TestCase):
     def setUp(self):
-        self.add_scenarios1 = AddScenarios.objects.create(name='')
+        self.add_scenarios1 = QualityScenarios.objects.create(name='')
         self.add_scenarios1.save()
         self.model = self.add_scenarios1
 

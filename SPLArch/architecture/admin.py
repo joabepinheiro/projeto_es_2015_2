@@ -170,9 +170,9 @@ class ScenariosAdmin(admin.ModelAdmin):
 
 
 class DDSAdminInline(admin.TabularInline):
-    model = DDSA.quality_attribute_priorities.through
+    model = DDSA.quality_attribute_priority.through
 
-    verbose_name_plural = 'Quality Attribute Priorities'
+    verbose_name_plural = 'Quality Attribute Priority'
     verbose_name = 'Quality Attribute Priority'
     #fk_name = 'from_ddsa'
     extra = 0
@@ -186,8 +186,8 @@ class DSSAAdmin(admin.ModelAdmin):
     inlines = [ DDSAdminInline ]
 
 
-class AddScenariosAdmin(admin.ModelAdmin):
-    form = AddScenariosForm
+class QualityScenariosAdmin(admin.ModelAdmin):
+    form = QualityScenariosForm
     filter_horizontal = ("nf_requirement",)
 
 
@@ -198,7 +198,7 @@ admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(API, ApiAdmin)
 admin.site.register(Architecture)
 admin.site.register(DDSA, DSSAAdmin)
-admin.site.register(AddScenarios, AddScenariosAdmin)
+admin.site.register(QualityScenarios, QualityScenariosAdmin)
 admin.site.register(Scenarios, ScenariosAdmin)
 admin.site.unregister(Architecture)
-admin.site.register(Quality_Scenario_Document)
+admin.site.register(QualityScenarioDocument)

@@ -94,12 +94,12 @@ class DSSAForm(forms.ModelForm):
         return self.cleaned_data
 
 
-class AddScenariosForm(forms.ModelForm):
+class QualityScenariosForm(forms.ModelForm):
     class Meta:
-        model = AddScenarios
+        model = QualityScenarios
 
     def __init__(self, *args, **kwargs):
-        super(AddScenariosForm, self).__init__(*args, **kwargs)
+        super(QualityScenariosForm, self).__init__(*args, **kwargs)
         wtf = Requirement.objects.filter(
             requirement_type=RequirementType.objects.filter(name='Non-functional requirement'));
 
