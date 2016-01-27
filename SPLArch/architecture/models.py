@@ -15,6 +15,7 @@ class References(models.Model):
     description = models.TextField(blank=True)
     publisher = models.CharField(max_length=100)
     pages = models.CharField(max_length=7)
+    year = models.IntegerField(max_length=4)
 
     def __unicode__(self):
         return self.title
@@ -42,7 +43,8 @@ class DDSA(models.Model):
     introduction = models.TextField(blank=True)
     references = models.ManyToManyField('References')
     technology = models.ManyToManyField('Technology')
-    Quality_Attribute_Priorities = models.ManyToManyField('AddScenarios')
+    quality_attribute_priorities = models.ManyToManyField('AddScenarios')
+    requirements = models.ManyToManyField(Requirement)
 
     def __unicode__(self):
         return self.name
