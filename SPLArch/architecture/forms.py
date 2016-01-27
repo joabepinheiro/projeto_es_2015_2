@@ -1,4 +1,6 @@
 from SPLArch.architecture.models import *
+from django.forms import ModelForm, CharField, TextInput
+import datetime
 from django import forms
 
 
@@ -14,6 +16,8 @@ class ApiForm(forms.ModelForm):
 
 
 class ReferencesForm(forms.ModelForm):
+    year = CharField(widget=TextInput(attrs={'type':'number', 'pattern':'^\d{4}$', 'max': datetime.datetime.now().year}))
+
     class Meta:
         model = References
 

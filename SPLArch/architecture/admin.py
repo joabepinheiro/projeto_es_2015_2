@@ -169,10 +169,21 @@ class ScenariosAdmin(admin.ModelAdmin):
     filter_horizontal = ("nf_requirement", "feature")
 
 
+class DDSAdminInline(admin.TabularInline):
+    model = DDSA.quality_attribute_priorities.through
+
+    verbose_name_plural = 'Quality Attribute Priorities'
+    verbose_name = 'Quality Attribute Priority'
+    #fk_name = 'from_ddsa'
+    extra = 0
+
+
+
 class DSSAAdmin(admin.ModelAdmin):
     form = DSSAForm
-    fields = ["name", "introduction", "references", "technology", "Quality_Attribute_Priorities", ]
-    filter_horizontal = ("references", "technology", "Quality_Attribute_Priorities",)
+    fields = ["name", "introduction", "references", "technology", "requirements" ]
+    filter_horizontal = ("references", "technology", "requirements")
+    inlines = [ DDSAdminInline ]
 
 
 class AddScenariosAdmin(admin.ModelAdmin):
