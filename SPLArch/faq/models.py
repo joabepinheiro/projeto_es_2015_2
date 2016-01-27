@@ -9,7 +9,7 @@ User = get_user_model()
 
 class Topic(models.Model):
     """
-    Generic Topics for FAQ question grouping
+    Generic Topics for faq question grouping
     """
     name = models.CharField(_('name'), max_length=150)
     slug = models.SlugField(_('slug'), max_length=150)
@@ -17,7 +17,7 @@ class Topic(models.Model):
         help_text=_('The order you would like the topic to be displayed.'))
 
     def get_absolute_url(self):
-        return '/FAQ/' + self.slug
+        return '/faq/' + self.slug
 
     class Meta:
         verbose_name = _("Topic")

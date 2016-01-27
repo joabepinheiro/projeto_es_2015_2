@@ -1,6 +1,6 @@
 # Django-faq Polish translation.
 # Copyright (C) 2012.
-# This file is distributed under the same license as the django-FAQ package.
+# This file is distributed under the same license as the django-faq package.
 # Karol Majta <karolmajta@gmail.com>, 2012.
 #
 msgid ""
@@ -126,7 +126,7 @@ msgstr "Często zadawane pytanie"
 
 #: views.py:95
 msgid ""
-"Your question was submitted and will be reviewed by for inclusion in the FAQ."
+"Your question was submitted and will be reviewed by for inclusion in the faq."
 msgstr ""
-"Twoje pytanie zostało przesłane. Dziękujemy, rozważymy umieszczenie go w FAQ."
+"Twoje pytanie zostało przesłane. Dziękujemy, rozważymy umieszczenie go w faq."
 

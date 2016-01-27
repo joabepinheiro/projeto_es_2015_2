@@ -36,9 +36,9 @@
              zindex: 0
          },
          {
-             title: "FAQ",
+             title: "faq",
              content: "Realize pesquisas pelo sistema",
-             target: "FAQ",
+             target: "faq",
              placement: "right",
              xOffset: -500,
              yOffset: 30,

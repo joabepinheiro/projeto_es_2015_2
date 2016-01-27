@@ -11,7 +11,7 @@ from .forms import SubmitFAQForm
 
 class TopicList(ListView):
     model = Topic
-    template = "FAQ/topic_list.html"
+    template = "faq/topic_list.html"
     allow_empty = True
     context_object_name = "topics"
 
@@ -41,7 +41,7 @@ class TopicList(ListView):
 
 class TopicDetail(DetailView):
     model = Topic
-    template = "FAQ/topic_detail.html"
+    template = "faq/topic_detail.html"
     context_object_name = "topic"
 
     def get_context_data(self, **kwargs):
@@ -60,7 +60,7 @@ class TopicDetail(DetailView):
 
 class QuestionDetail(DetailView):
     queryset = Question.objects.active()
-    template = "FAQ/question_detail.html"
+    template = "faq/question_detail.html"
 
     def get_queryset(self):
         topic = get_object_or_404(Topic, slug=self.kwargs['topic_slug'])
@@ -78,7 +78,7 @@ class QuestionDetail(DetailView):
 class SubmitFAQ(CreateView):
     model = Question
     form_class = SubmitFAQForm
-    template_name = "FAQ/submit_question.html"
+    template_name = "faq/submit_question.html"
     success_view_name = "faq_submit_thanks"
 
     def get_form_kwargs(self):
@@ -91,7 +91,7 @@ class SubmitFAQ(CreateView):
     def form_valid(self, form):
         response = super(SubmitFAQ, self).form_valid(form)
         messages.success(self.request,
-            _("Your question was submitted and will be reviewed by for inclusion in the FAQ."),
+            _("Your question was submitted and will be reviewed by for inclusion in the faq."),
             fail_silently=True,
         )
         return response
@@ -105,4 +105,4 @@ class SubmitFAQ(CreateView):
             return reverse(self.success_view_name)
 
 class SubmitFAQThanks(TemplateView):
-    template_name = "FAQ/submit_thanks.html"
+    template_name = "faq/submit_thanks.html"

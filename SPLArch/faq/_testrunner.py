@@ -9,13 +9,13 @@ settings.configure(
     DATABASES = {
         'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory;'}
     },
-    INSTALLED_APPS = ['django.contrib.auth', 'django.contrib.contenttypes', 'FAQ'],
-    ROOT_URLCONF = 'FAQ.urls',
+    INSTALLED_APPS = ['django.contrib.auth', 'django.contrib.contenttypes', 'faq'],
+    ROOT_URLCONF = 'faq.urls',
 )
 
 def runtests():
     import django.test.utils
     runner_class = django.test.utils.get_runner(settings)
     test_runner = runner_class(verbosity=1, interactive=True)
-    failures = test_runner.run_tests(['FAQ'])
+    failures = test_runner.run_tests(['faq'])
     sys.exit(failures)

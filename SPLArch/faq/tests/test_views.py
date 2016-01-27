@@ -8,7 +8,7 @@ from django.conf import settings
 from ..models import Topic, Question
 
 class FAQViewTests(django.test.TestCase):
-    urls = 'FAQ.urls'
+    urls = 'faq.urls'
     fixtures = ['faq_test_data.json']
 
     def setUp(self):
@@ -22,7 +22,7 @@ class FAQViewTests(django.test.TestCase):
     def test_submit_faq_get(self):
         response = self.client.get('/submit/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "FAQ/submit_question.html")
+        self.assertTemplateUsed(response, "faq/submit_question.html")
 
     @mock.patch('django.contrib.messages')
     def test_submit_faq_post(self, mock_messages):
@@ -42,12 +42,12 @@ class FAQViewTests(django.test.TestCase):
     def test_submit_thanks(self):
         response = self.client.get('/submit/thanks/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "FAQ/submit_thanks.html")
+        self.assertTemplateUsed(response, "faq/submit_thanks.html")
     
     def test_faq_index(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "FAQ/topic_list.html")
+        self.assertTemplateUsed(response, "faq/topic_list.html")
         self.assertQuerysetEqual(
             response.context["topics"],
             ["<Topic: Silly questions>", "<Topic: Serious questions>"]
@@ -60,7 +60,7 @@ class FAQViewTests(django.test.TestCase):
     def test_topic_detail(self):
         response = self.client.get('/silly-questions/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "FAQ/topic_detail.html")
+        self.assertTemplateUsed(response, "faq/topic_detail.html")
         self.assertEqual(
             response.context['topic'],
             Topic.objects.get(slug="silly-questions")
@@ -78,7 +78,7 @@ class FAQViewTests(django.test.TestCase):
     def test_question_detail(self):
         response = self.client.get('/silly-questions/your-quest/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "FAQ/question_detail.html")
+        self.assertTemplateUsed(response, "faq/question_detail.html")
         self.assertEqual(
             response.context["question"],
             Question.objects.get(slug="your-quest")
