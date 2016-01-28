@@ -27,48 +27,15 @@ class ProductAdmin(admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         opts = self.model._meta
+
+
         if not request.REQUEST.has_key("_change"):
             if request.REQUEST.has_key("_zipreport"):
+
                 product = Product.objects.get(id=object_id)
-                #use case
-                usecase = UseCase.getReport(product)
-                usecaseTemp = NamedTemporaryFile()
-                usecaseTemp.close()
-                usecaseTemp = codecs.open(usecaseTemp.name,'wb')
-                usecaseTemp.write(usecase)
-                usecaseTemp.close()
+                artifacts = request.GET.getlist('artifact[]')
+                zipreport = request.GET.get('_zipreport')
 
-                #Feature
-                features = Feature.getReport(product)
-                featuresTemp = NamedTemporaryFile()
-                featuresTemp.close()
-                featuresTemp = codecs.open(featuresTemp.name,'wb')
-                featuresTemp.write(features)
-                featuresTemp.close()
-
-                #Glossary
-                glossary = Glossary.getReport(product)
-                glossaryTemp = NamedTemporaryFile()
-                glossaryTemp.close()
-                glossaryTemp = codecs.open(glossaryTemp.name,'wb')
-                glossaryTemp.write(glossary)
-                glossaryTemp.close()
-
-                #API
-                api = API.getReport(product)
-                apisTemp = NamedTemporaryFile()
-                apisTemp.close()
-                apisTemp = codecs.open(apisTemp.name,'wb')
-                apisTemp.write(api)
-                apisTemp.close()
-
-                #References
-                references = References.getReport(product)
-                referencesTemp = NamedTemporaryFile()
-                referencesTemp.close()
-                referencesTemp = codecs.open(referencesTemp.name,'wb')
-                referencesTemp.write(references)
-                referencesTemp.close()
 
                 # Folder name in ZIP archive which contains the above files
                 # E.g [thearchive.zip]/somefiles/file2.txt
@@ -82,19 +49,83 @@ class ProductAdmin(admin.ModelAdmin):
                 # The zip compressor
                 zf = zipfile.ZipFile(s, "w")
 
+                if 'usecase' in artifacts or zipreport == 'all_artifacts':
+                    usecase = UseCase.getReport(product)
+                    usecaseTemp = NamedTemporaryFile()
+                    usecaseTemp.close()
+                    usecaseTemp = codecs.open(usecaseTemp.name,'wb')
+                    usecaseTemp.write(usecase)
+                    usecaseTemp.close()
+
+                    usecase_zip_path = os.path.join(zip_subdir, product.name+"_usecase_report.pdf")
+                    zf.write(usecaseTemp.name, usecase_zip_path)
+
+                #Feature
+                if 'features' in artifacts or zipreport == 'all_artifacts':
+                    features = Feature.getReport(product)
+                    featuresTemp = NamedTemporaryFile()
+                    featuresTemp.close()
+                    featuresTemp = codecs.open(featuresTemp.name,'wb')
+                    featuresTemp.write(features)
+                    featuresTemp.close()
+
+                    feature_zip_path = os.path.join(zip_subdir, product.name+"_features_report.pdf")
+                    zf.write(featuresTemp.name, feature_zip_path)
+
+                #Glossary
+                if 'glossary' in artifacts or zipreport == 'all_artifacts':
+                    glossary = Glossary.getReport(product)
+                    glossaryTemp = NamedTemporaryFile()
+                    glossaryTemp.close()
+                    glossaryTemp = codecs.open(glossaryTemp.name,'wb')
+                    glossaryTemp.write(glossary)
+                    glossaryTemp.close()
+
+                    glossary_zip_path = os.path.join(zip_subdir, product.name+"_glossary_report.pdf")
+                    zf.write(glossaryTemp.name, glossary_zip_path)
+
+                #API
+                if 'api' in artifacts or zipreport == 'all_artifacts':
+                    api = API.getReport(product)
+                    apisTemp = NamedTemporaryFile()
+                    apisTemp.close()
+                    apisTemp = codecs.open(apisTemp.name,'wb')
+                    apisTemp.write(api)
+                    apisTemp.close()
+
+                    apis_zip_path = os.path.join(zip_subdir, product.name+"_apis_report.pdf")
+                    zf.write(apisTemp.name, apis_zip_path)
+
+                #References
+                if 'references' in artifacts or zipreport == 'all_artifacts':
+                    references = References.getReport(product)
+                    referencesTemp = NamedTemporaryFile()
+                    referencesTemp.close()
+                    referencesTemp = codecs.open(referencesTemp.name,'wb')
+                    referencesTemp.write(references)
+                    referencesTemp.close()
+                    references_zip_path = os.path.join(zip_subdir, product.name+"_references_report.pdf")
+                    zf.write(referencesTemp.name, references_zip_path)
+
+
+
                 # Calculate path for file in zip
-                usecase_zip_path = os.path.join(zip_subdir, product.name+"_usecase_report.pdf")
-                feature_zip_path = os.path.join(zip_subdir, product.name+"_features_report.pdf")
-                glossary_zip_path = os.path.join(zip_subdir, product.name+"_glossary_report.pdf")
-                apis_zip_path = os.path.join(zip_subdir, product.name+"_apis_report.pdf")
-                references_zip_path = os.path.join(zip_subdir, product.name+"_references_report.pdf")
+
+
+
+
+
+
+
+
+
 
                 # Add file, at correct path
-                zf.write(usecaseTemp.name, usecase_zip_path)
-                zf.write(featuresTemp.name, feature_zip_path)
-                zf.write(glossaryTemp.name, glossary_zip_path)
-                zf.write(apisTemp.name, apis_zip_path)
-                zf.write(referencesTemp.name, references_zip_path)
+
+
+
+
+
 
                 # Must close zip for all contents to be written
                 zf.close()

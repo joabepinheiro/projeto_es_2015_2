@@ -342,6 +342,21 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     display: inline-block;
     margin-bottom: 30px;
 }
+
+#select-artifacts{
+    background: #16a085;
+}
+
+#table-select-artifacts thead th{
+    padding: 10px 7px;
+}
+
+#table-select-artifacts td:first-child{
+    text-align: center; /* center checkbox horizontally */
+    vertical-align: middle; /* center checkbox vertically */
+    width: 50px;
+}
+
 @media (max-width: 979px){
 
     .navbar-fixed-top{

@@ -19,9 +19,11 @@ class References(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    publisher = models.CharField(max_length=100)
-    pages = models.CharField(max_length=7)
+    publisher = models.CharField(max_length=100, blank=True)
+    pages = models.CharField(max_length=7, blank=True)
+    number = models.IntegerField(max_length=4, blank=True)
     year = models.IntegerField(max_length=4)
+    volume = models.IntegerField(max_length=4, blank=True)
 
     def __unicode__(self):
         return self.title

@@ -1,8 +1,9 @@
 from SPLArch.architecture.models import *
-from django.forms import ModelForm, CharField, TextInput
+from django.forms import IntegerField, TextInput, CharField
 import datetime
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
+
 
 class ApiForm(forms.ModelForm):
     class Meta:
@@ -16,6 +17,9 @@ class ApiForm(forms.ModelForm):
 
 
 class ReferencesForm(forms.ModelForm):
+    #pages = CharField(widget=TextInput(attrs={'type':'number', 'required': ''}))
+    #number = CharField(widget=TextInput(attrs={'type':'number'}))
+    #volume = CharField(widget=TextInput(attrs={'type':'number'}))
     year = CharField(widget=TextInput(attrs={'type':'number', 'pattern':'^\d{4}$', 'max': datetime.datetime.now().year}))
 
     class Meta:
@@ -46,7 +50,7 @@ class UseCaseForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UseCaseForm, self).__init__(*args, **kwargs)
         wtf = Requirement.objects.filter(
-            requirement_type=RequirementType.objects.filter(name='Functional Requirements'));
+            requirement_type=RequirementType.objects.filter(name='Functional Requirements'))
 
         w = self.fields['f_requirements'].widget
         choices = []
@@ -115,7 +119,7 @@ class QualityScenariosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(QualityScenariosForm, self).__init__(*args, **kwargs)
         wtf = Requirement.objects.filter(
-            requirement_type=RequirementType.objects.filter(name='Non-functional requirement'));
+            requirement_type=RequirementType.objects.filter(name='Non-functional requirement'))
 
         w = self.fields['nf_requirement'].widget
         choices = []
