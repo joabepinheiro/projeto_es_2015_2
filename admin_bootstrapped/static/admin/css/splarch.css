@@ -355,7 +355,9 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 
-
+#faq{
+    text-transform: uppercase;
+}
 /**
 
 .filtered {
