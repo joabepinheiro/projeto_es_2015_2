@@ -85,7 +85,7 @@ class ProductAdmin(admin.ModelAdmin):
                     zf.write(glossaryTemp.name, glossary_zip_path)
 
                 #API
-                if 'api' in artifacts or zipreport == 'all_artifacts':
+                if 'apis' in artifacts or zipreport == 'all_artifacts':
                     api = API.getReport(product)
                     apisTemp = NamedTemporaryFile()
                     apisTemp.close()
@@ -108,22 +108,46 @@ class ProductAdmin(admin.ModelAdmin):
                     zf.write(referencesTemp.name, references_zip_path)
 
 
+                 #Requirements
+                if 'requirements' in artifacts or zipreport == 'all_artifacts':
+                    requirements = Requirement.getReport(product)
+                    requirementsTemp = NamedTemporaryFile()
+                    requirementsTemp.close()
+                    requirementsTemp = codecs.open(requirementsTemp.name,'wb')
+                    requirementsTemp.write(requirements)
+                    requirementsTemp.close()
+                    requirements_zip_path = os.path.join(zip_subdir, product.name+"_requirements_report.pdf")
+                    zf.write(requirementsTemp.name,requirements_zip_path)#Requirements
 
-                # Calculate path for file in zip
+                if 'dssas' in artifacts or zipreport == 'all_artifacts':
+                    dssas = DDSA.getReport(product)
+                    dssasTemp = NamedTemporaryFile()
+                    dssasTemp.close()
+                    dssasTemp = codecs.open(dssasTemp.name,'wb')
+                    dssasTemp.write(dssas)
+                    dssasTemp.close()
+                    dssas_zip_path = os.path.join(zip_subdir, product.name+"_dssas_report.pdf")
+                    zf.write(dssasTemp.name,dssas_zip_path)
 
+                if 'technologies' in artifacts or zipreport == 'all_artifacts':
+                    technologies =  Technology.getReport(product)
+                    technologiesTemp = NamedTemporaryFile()
+                    technologiesTemp.close()
+                    technologiesTemp = codecs.open(technologiesTemp.name,'wb')
+                    technologiesTemp.write(technologies)
+                    technologiesTemp.close()
+                    technologies_zip_path = os.path.join(zip_subdir, product.name+"_technologies_report.pdf")
+                    zf.write(technologiesTemp.name, technologies_zip_path)
 
-
-
-
-
-
-
-
-
-                # Add file, at correct path
-
-
-
+                if 'qualityscenariodocuments' in artifacts or zipreport == 'all_artifacts':
+                    qualityscenariodocuments =  QualityScenarioDocument.getReport(product)
+                    qualityscenariodocumentsTemp = NamedTemporaryFile()
+                    qualityscenariodocumentsTemp.close()
+                    qualityscenariodocumentsTemp = codecs.open(qualityscenariodocumentsTemp.name,'wb')
+                    qualityscenariodocumentsTemp.write(qualityscenariodocuments)
+                    qualityscenariodocumentsTemp.close()
+                    qualityscenariodocuments_zip_path = os.path.join(zip_subdir, product.name+"_qualityscenariodocuments_report.pdf")
+                    zf.write(qualityscenariodocumentsTemp.name, qualityscenariodocuments_zip_path)
 
 
 

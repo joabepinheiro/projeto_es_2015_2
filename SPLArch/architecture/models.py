@@ -61,6 +61,19 @@ class DDSA(models.Model):
         verbose_name = "DSSA"
         verbose_name_plural = "DSSAs"
 
+    @staticmethod
+    def getReport(product=None):
+        if (product):
+            mycontext = {'dssas': DDSA.objects.all,
+                         'product_name': product.name,
+                         'autoescape': False}
+        else:
+            mycontext = {'dssas': DDSA.objects.all,
+                         'product_name': "All products",
+                         'autoescape': False}
+
+        return render_to_latex("admin/fur/dssa/report_dssa.tex", mycontext)
+
 
 class QualityAttributePriority(models.Model):
     add_scenarios = models.ForeignKey('QualityScenarios', on_delete=models.CASCADE, verbose_name='Quality Scenario')
@@ -79,6 +92,19 @@ class QualityScenarioDocument(models.Model):
     class Meta:
         verbose_name = "Quality Scenario Document"
         verbose_name_plural = "Quality Scenario Documents"
+
+    @staticmethod
+    def getReport(product=None):
+        if (product):
+            mycontext = {'qualityscenariodocuments': QualityScenarioDocument.objects.all,
+                         'product_name': product.name,
+                         'autoescape': False}
+        else:
+            mycontext = {'qualityscenariodocuments': QualityScenarioDocument.objects.all,
+                         'product_name': "All products",
+                         'autoescape': False}
+
+        return render_to_latex("admin/fur/qualityscenariodocument/report_qualityscenariodocument.tex", mycontext)
 
 
 class Scenarios(models.Model):
@@ -119,6 +145,19 @@ class Technology(models.Model):
     class Meta:
         verbose_name = "Technology"
         verbose_name_plural = "Technologies"
+
+    @staticmethod
+    def getReport(product=None):
+        if (product):
+            mycontext = {'technologies': Technology.objects.all,
+                         'product_name': product.name,
+                         'autoescape': False}
+        else:
+            mycontext = {'technologies': Technology.objects.all,
+                         'product_name': "All products",
+                         'autoescape': False}
+
+        return render_to_latex("admin/fur/technologies/report_technologies.tex", mycontext)
 
 
 class API(models.Model):

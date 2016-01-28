@@ -58,6 +58,22 @@ class Requirement(models.Model):
         return self.name
 
 
+    @staticmethod
+    def getReport(product=None):
+        if(product):
+            mycontext = {'requirements': Requirement.objects.all,
+                         'product_name': product.name,
+                         'autoescape': False
+            }
+        else:
+            mycontext = {'requirements': Requirement.objects.all,
+                         'product_name': "All products",
+                         'autoescape': False
+            }
+
+        return render_to_latex("admin/fur/requirement/report_requirement.tex",mycontext)
+
+
 class UseCase(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
