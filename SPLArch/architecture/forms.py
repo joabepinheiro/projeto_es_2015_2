@@ -2,7 +2,7 @@ from SPLArch.architecture.models import *
 from django.forms import ModelForm, CharField, TextInput
 import datetime
 from django import forms
-
+from django.contrib.admin.widgets import FilteredSelectMultiple
 
 class ApiForm(forms.ModelForm):
     class Meta:
@@ -84,8 +84,22 @@ class ScenariosForm(forms.ModelForm):
 
 
 class DSSAForm(forms.ModelForm):
+
     class Meta:
         model = DDSA
+
+    requirements = forms.ModelMultipleChoiceField(
+        queryset=Requirement.objects.all().order_by('-priority'),
+        widget=FilteredSelectMultiple(
+            'requirements',
+            False
+        ),
+        label='Architectural Drives (Requirements)'
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(DSSAForm, self).__init__(*args, **kwargs)
+        self.fields['requirements'].label_from_instance = lambda obj: "%s" % obj.name + ' (' + obj.priority.name + ')'
 
     def clean(self):
         for field in self.cleaned_data:

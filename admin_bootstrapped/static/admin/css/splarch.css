@@ -353,3 +353,24 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     margin-top: 0px;
     }
 }
+
+
+
+/**
+
+.filtered {
+    width: 370px;
+}
+
+.selector{
+    width: 100%;
+}
+.selector-available, .selector-chosen {
+    width: 34%;
+}
+
+.selector select{
+    width: 100%;
+}
+
+**/

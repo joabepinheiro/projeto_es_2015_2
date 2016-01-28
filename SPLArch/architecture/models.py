@@ -50,7 +50,7 @@ class DDSA(models.Model):
     references = models.ManyToManyField('References')
     technology = models.ManyToManyField('Technology')
     quality_attribute_priority = models.ManyToManyField('QualityScenarios', through='QualityAttributePriority')
-    requirements = models.ManyToManyField(Requirement)
+    requirements = models.ManyToManyField(Requirement,)
 
     def __unicode__(self):
         return self.name
