@@ -101,15 +101,6 @@
 		    {% endfor %}
 		</td>
 	</tr>
-	<tr>
-		<td nowrap="nowrap"><b>Use Stories with this feature:</b></td> 
-		<td>
-		    {% for story in feature.userstory_set.all %}
-		 <ul><a href="{{ story.get_admin_url }}">{{ story.name }}</a></ul>
-		    {% endfor %}
-		</td>
-	</tr>
-
 </table> 
 </div>
 {% endblock %}

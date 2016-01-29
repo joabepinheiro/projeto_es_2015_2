@@ -67,12 +67,6 @@
 	{% endfor %}\\
 	\hline
 
-	\textbf{Use Stories with this feature:} &
-	{% for story in feature.userstory_set.all %}
-	  {{story.name}} 
-	{% endfor %}\\
-	\hline
-
 
 	\end{longtable}
 {% endfor %}
