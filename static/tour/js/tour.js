@@ -2,15 +2,14 @@
  var tour = {
      id: "splarch-welcome",
      selectors: {
-         init: '#architecture',
+         init: '#architecture'
      },
-     showCloseButton: true,
      i18n: {
-        nextBtn: 'Proximo',
-        prevBtn: 'Anterior',
+        nextBtn: 'Next',
+        prevBtn: 'Previous',
         doneBtn: "Ok",
-        skipBtn: "Sair",
-        closeTooltip: "Fechar",
+        skipBtn: "Exit",
+        closeTooltip: "Close"
      },
      showCloseButton: true,
      showPrevButton: true,
@@ -23,7 +22,7 @@
              yOffset: 100,
              xOffset: -500,
              delay: 1,
-             zindex: 0,
+             zindex: 0
          },
          {
              title: "Auth",

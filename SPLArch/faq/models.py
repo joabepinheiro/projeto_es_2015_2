@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.template.defaultfilters import slugify
 from managers import QuestionManager
 
+
 User = get_user_model()
 
 class Topic(models.Model):

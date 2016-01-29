@@ -1,7 +1,6 @@
 #arquivos/diretórios para ignorar
 .idea/
 *.sqlite3
-*.db
 *.metadata
 
 # Byte-compiled / optimized / DLL files
