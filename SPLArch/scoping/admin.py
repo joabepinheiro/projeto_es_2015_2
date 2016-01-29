@@ -192,7 +192,6 @@ class FeatureRequireAdminInline(admin.TabularInline):
     #I gor the fk_name using the django shell, by inspecting the objet Feature
     fk_name = 'from_feature'
     extra = 0
-    #form = RequiredFeaturesForm
 
 
 class FeatureAdmin(admin.ModelAdmin):
