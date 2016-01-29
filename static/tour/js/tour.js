@@ -17,7 +17,7 @@
      steps: [
          {
              title: "Architecture",
-             content: "Texto para decisões",
+             content: "Module for architectures registration",
              target: "architecture",
              placement: "right",
              yOffset: 100,
@@ -27,7 +27,7 @@
          },
          {
              title: "Auth",
-             content: "Texto para arquitetura",
+             content: "Module of authentication and user control",
              target: "auth",
              placement: "right",
              yOffset: 40,
@@ -36,8 +36,8 @@
              zindex: 0
          },
          {
-             title: "faq",
-             content: "Realize pesquisas pelo sistema",
+             title: "FAQ",
+             content: "Check frequently asked questions about the software",
              target: "faq",
              placement: "right",
              xOffset: -500,
@@ -46,7 +46,7 @@
          },
          {
              title: "Requirement",
-             content: "Texto para empresas",
+             content: "Module for Requirements registration",
              target: 'requirement',
              placement: "right",
              xOffset: -500,
@@ -55,7 +55,7 @@
          },
          {
              title: "Scoping",
-             content: "Adicione ou modifique conteudo",
+             content: "Module for Scoping registration",
              target: 'scoping',
              placement: "right",
              xOffset: -500,
