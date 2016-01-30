@@ -80,6 +80,8 @@ class QualityAttributePriority(models.Model):
     dssa = models.ForeignKey('DDSA', on_delete=models.CASCADE)
     priority = models.CharField(max_length=64, choices=PRIORITY)
 
+    def __unicode__(self):
+        return self.add_scenarios.name + " " + self.priority
 
 class QualityScenarioDocument(models.Model):
     introduction = models.TextField(blank=True)
