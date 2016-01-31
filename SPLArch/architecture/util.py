@@ -24,7 +24,7 @@ def render_to_latex(template, context, context_instance=None):
     body = body.replace('<br>', '\\')
     body = body.replace('#', '\\#')
 
-    tempf = NamedTemporaryFile(dir=os.getcwd()+'\\temp')
+    tempf = NamedTemporaryFile(dir=os.getcwd()+'/temp')
     tempf.close()
     tempf = codecs.open(tempf.name, 'w', 'utf-8')
     tempf.write(body)
