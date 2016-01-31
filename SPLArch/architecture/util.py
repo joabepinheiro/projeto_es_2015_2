@@ -20,7 +20,6 @@ def render_to_latex(template, context, context_instance=None):
     tempf.write(body)
     tempf.close()
     for i in range(3):
-        os.system('mkdir -p /temp/')
         os.system('pdflatex -interaction nonstopmode -output-directory %s %s' %
                   (os.path.split(tempf.name)[0], tempf.name))
     return open(tempf.name + '.pdf', 'rb').read()
