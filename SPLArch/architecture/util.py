@@ -22,4 +22,4 @@ def render_to_latex(template, context, context_instance=None):
     for i in range(3):
         os.system('pdflatex -interaction nonstopmode -output-directory %s %s' %
                   (os.path.split(tempf.name)[0], tempf.name))
-    return open(tempf.name + '.pdf', 'w').read()
+    return open(os.path.split(tempf.name)[0] + '.pdf', 'rb').read()
