@@ -41,7 +41,8 @@ def render_to_latex(template, context, context_instance=None):
     context = Context(context)
     rendered_tpl = template.render(context).encode('utf-8')
     # Python3 only. For python2 check out the docs!
-    with TemporaryDirectory(dir=os.getcwd()+'\\temp') as tempdir:
+
+    with TemporaryDirectory(dir=os.path.join(os.getcwd(), 'temp')) as tempdir:
 
         # Create subprocess, supress output with PIPE and
         # run latex twice to generate the TOC properly.
