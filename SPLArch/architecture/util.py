@@ -15,11 +15,6 @@ def render_to_latex(template, context, context_instance=None):
     body = body.replace('#', '\\#')
 
     tempf = NamedTemporaryFile()
-
-    print 'ssssssssssssssssssssssssssssssss'
-    print  os.path.split(tempf.name)[0]
-    tempf.close()
-    '''
     tempf = codecs.open(tempf.name, 'w', 'utf-8')
     tempf.write(body)
     tempf.close()
@@ -27,5 +22,3 @@ def render_to_latex(template, context, context_instance=None):
         os.system('pdflatex -interaction nonstopmode -output-directory %s %s' %
                   (os.path.split(tempf.name)[0], tempf.name))
     return open(tempf.name + '.pdf', 'rb').read()
-
-    '''
