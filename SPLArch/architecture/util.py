@@ -14,12 +14,13 @@ def render_to_latex(template, context, context_instance=None):
     body = body.replace('<br>', '\\')
     body = body.replace('#', '\\#')
 
-    tempf = NamedTemporaryFile(delete=False)
+    tempf = NamedTemporaryFile()
     tempf.close()
     tempf = codecs.open(tempf.name, 'w', 'utf-8')
     tempf.write(body)
     tempf.close()
     for i in range(3):
+        os.system('mkdir -p /temp/')
         os.system('pdflatex -interaction nonstopmode -output-directory %s %s' %
                   (os.path.split(tempf.name)[0], tempf.name))
     return open(tempf.name + '.pdf', 'rb').read()
